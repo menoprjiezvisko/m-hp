@@ -49,6 +49,7 @@
       display:flex;
       justify-content:flex-end;
       background-color:#fff;
+      font-size: 16px;
     }
     .navbar ul li a{
       text-decoration:none;
@@ -320,8 +321,7 @@
       border-left:1px solid rgba(51,51,51,.5);
       border-bottom:1px solid rgba(51,51,51,.5);
     }
-    body{
-      overflow-x:hidden}
+
     .submenu{
       z-index:1;
       display:none;
@@ -415,7 +415,7 @@ border-bottom: 2px solid transparent;
 }
 
 /* Hide Hamburger */
-#page-nav label, #hamburger {
+#page-nav label, #hamburger, #porttit{
   display: none;
 }
 
@@ -486,6 +486,7 @@ border-bottom: 2px solid transparent;
     stroke-dasharray: 0 100;
   }
 }
+
 /* MOBILE */
 @media screen and (max-width: 768px){
   /* Show Hamburger */
@@ -499,12 +500,13 @@ border-bottom: 2px solid transparent;
   #page-nav label:before {
     content: "☰";
     color: darkred;
+    font-size: 25px;
   }
   .container {
     padding: 0px;
   }
 .container-holder {
-      padding: 0px 10px;
+      padding: 0px 20px;
     }
   /* Break down menu items into vertical */
   #page-nav ul li {
@@ -527,8 +529,8 @@ border-bottom: 2px solid transparent;
     z-index: 10;
     background: red;
     width: 100%;
-            padding: 0;
-                text-align: center;
+    padding: 0;
+    text-align: center;
     padding-top: 10%;
   }
   .header {
@@ -549,7 +551,7 @@ border-bottom: 2px solid transparent;
    #page-nav ul li {
     border: none;
     margin: 0;
-padding: 10px 0px;
+  padding: 10px 0px;
    }
    .submenu {
     background: transparent;
@@ -558,24 +560,62 @@ padding: 10px 0px;
    .submenu a {
     border: none;
    }
-    .submenu:focus{
-      display:block}
-    .portfolio:focus .submenu{
-      display:block;
-      width: 100%;
-      padding: 0px;
-      padding-top: 18px;
-    }
+
+
+
+  #page-nav-sub label {
+    display: inline-block;
+    color: #e4051f;
+    font-style: normal;
+    font-size: 1.2em;
+    padding: 10px;
+  }
+  #page-nav-sub label:before {
+    content: "Portfólio titulov";
+            color: white;
+        border-bottom: none;
+        font-weight: 600;
+        font-size: 16px;
+  }
+
+     /* Break down menu items into vertical */
+  #page-nav-sub .submenu a {
+    display: block;
+  }
+
+  /* Toggle show/hide menu on checkbox click */
+  #page-nav-sub .submenu {
+    display: none;
+  }
+  #page-nav-sub input:checked ~ .submenu {
+    display: block;
+    position: relative;
+    left: 0;
+    height: 100%;
+    z-index: 10;
+    background: red;
+    width: 100%;
+    padding: 0;
+    text-align: center;
+            border-top: 1px solid #ffffffa8;
+        border-bottom: 1px solid #ffffffa8;
+  }
    .portfolio:after {
     color: white;
     border-left: 1px solid white;
     border-bottom: 1px solid white;
+    right: -12px;
+    top: -1px;
    }
    .header {
     margin-top: 0px;
    }
+
    #page-nav input:checked ~ label:before{
     content: "✕";
+   }
+       #page-nav-sub input:checked ~ label:before{
+    content: "Portfólio titulov";
    }
    .content-vydavatelstvo{
     font-size: 25px;
@@ -613,6 +653,9 @@ padding: 10px 0px;
         gap: none;
         padding: 0;
    }
+   .portfolio span {
+    display: none;
+   }
 }
   </style>
     <div class="header">
@@ -623,9 +666,10 @@ padding: 10px 0px;
         <input type="checkbox" id="hamburger"/>
         <ul>
         <li><a href="#">O spoločnosti</a></li>
-        <li><span class="portfolio">
-          <a href="#">Portfólio titulov
-          </a>
+        <li>
+          <span class="portfolio" id="page-nav-sub"><span>Portfólio titulov</span>
+          <input type="checkbox" id="porttit"/>
+          <label for="porttit" ></label>
           <div class="submenu">
             <a href="#">Online
             </a>
