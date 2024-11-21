@@ -1,666 +1,192 @@
 <!DOCTYPE html>
-<html lang="sk">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MAFRA Slovakia
-  </title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet" />
-  <style>
-    body{
-      font-family:Montserrat,sans-serif;
-      margin:0;
-      padding:0;
-      color:#000;
-      display:flex;
-      flex-direction:column;
-      align-items:center}
-    .container{
-      width:100%;
-      max-width:1200px;
-      background-color:#fff;
-      padding:0 20px;
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css" />
+    <title></title>
+</head>
+    <style>
+        .section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .section img {
+            width: 40%;
+            height: auto;
+        }
+        .sub-categories-wrapper {
+            background-color: white;
+            padding: 10px 0;
+        }
+
+        .sub-categories {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        .product-detail-btn {
+            background-color: #003049;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 5px 5px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .sub-categories button.selected {
+            background-color: #D62828;
+        }
+
+        .layout {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sidebar {
+            background-color: #003049;
+            width: 15%;
+            height: 800px;
+            overflow-y: auto;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: #D62828;
+        }
+
+        .sidebar {
+            scrollbar-width: thin;
+            scrollbar-color: #D62828 #02283b;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            text-decoration: none;
+            color: white;
+            padding: 15px 5px;
+            font-size: 16px;
+            border-bottom: 1px solid #02283b;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #004471;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            background: linear-gradient(to bottom, rgba(214, 40, 40, 0.2), rgba(214, 40, 40, 0.0));
+            height: 100vh;
+            box-sizing: border-box;
+            width: 85%;
+        }
+
+        .main-content .header-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .main-content p {
+            font-size: 16px;
+            color: black;
+            line-height: 1.6;
+        }
+
+        .main-content .buttons {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+        }
+
+        .main-content .buttons button {
+            background-color: #003049;
+            color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .main-content img {
+            width: 400px;
+            height: auto;
+        }
+
+        .main-content img:nth-of-type(2) {
+            float: right;
+            width: 400px;
+            height: auto;
+            margin-left: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 45px;
+
+        }
+        .buttons {
+      margin-bottom: 20px;
     }
-    .header{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-around;
-      padding: 0;
-      background-color:#fff;
-      margin-top:15px;
-      width: 100%;
-      border-bottom: 1px solid #ffb7b7;
+    button {
+      margin-right: 10px;
+      padding: 10px 15px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
     }
-    .header-logo {
-      border-bottom: 2px solid #ee6575;
-      padding-bottom: 19px;
+    button.active {
+      background-color: #007BFF;
+      color: white;
+      border-color: #007BFF;
     }
-    .header:after{
-      display:none;
-      content:'';
-      position:absolute;
-      left:0;
-      width:100vw;
-      height:1px;
-      background-color:rgba(255,0,0,.5);
-      top:66px}
-    .header img{
-      width:150px}
-    .navbar{
-      display:flex;
-      justify-content:flex-end;
-      background-color:#fff;
-      font-size: 16px;
-    }
-    .navbar ul li a{
-      text-decoration:none;
-      color:#000;
-      padding-bottom: 15px;
-      border-bottom: 2px solid transparent;
-    }
-    .navbar a:hover{
-          border-bottom: 2px solid #ee6575;
-    }
-    .budova{
-      position:relative;
-      text-align:center;
-      color:#fff;
-      background-size: cover;
-    }
-    .budova img{
-      width:100%;
-      height:auto;
-    }
-    .budova-text{
-      display:none;
-      position:absolute;
-      top:50%;
-      left:50%;
-      transform:translate(-50%,-50%);
-      background-color:rgba(0,0,0,.5);
-      padding:20px;
-      border-radius:10px}
-    .budova-text h1{
-      margin:0;
-      font-size:2.5em}
-    .content{
-      text-align:center;
-    }
-    .content-vydavatelstvo{
-      font-size:32px;
-      text-align:left;
-      color:#000
-    }
-    .content h1{
-      color:#e30613;
-      margin-bottom:20px}
-    .ponuka{
-    position: relative;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    }
-    .ponuka::before{
-      content: "";
-      width: 100%;
-      height: 4px;
-      background: #002f63;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    }
-    .ponuka h2 {
-    display: inline-flex;
-    justify-content: center;
-    z-index: 10;
-    position: relative;
-    background: white;
-    padding: 0px 35px;
-    }
-    .ponuka-box {
-      display: flex;
-      max-width: 1200px;
-      justify-content: space-between;
-      padding: 20px 0px;
-    }
-    .ponuka-box div img {
-      height: 250px;
+
+    .product {
+      margin: 10px 0;
       cursor: pointer;
     }
-    .preco-mafra{
-    position: relative;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
+    .product-detail {
+      border: 1px solid #ddd;
+      padding: 60px 20px;
+      position: relative;
+      display: flex;
     }
-    .preco-mafra::before{
-      content: "";
+    .product-detail-headline {
+      position: absolute;
+      top: 0;
       width: 100%;
-      height: 4px;
-      background: #e30613;
-    position: absolute;
-    left: 0;
-    top: 50%;
+      left: 0;
     }
-    .preco-mafra h2 {
-    display: inline-flex;
-    justify-content: center;
-    z-index: 10;
-    position: relative;
-    background: white;
-    padding: 0px 35px;
+    .product-detail-headline{
+      padding-left: 20px;
     }
-    .spravy-noviny{
-    position: relative;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
+    .hidden {
+      display: none;
     }
-    .spravy-noviny::before{
-      content: "";
-      width: 100%;
-      height: 4px;
-      background: #002f63;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    }
-    .spravy-noviny h2 {
-    display: inline-flex;
-    justify-content: center;
-    z-index: 10;
-    position: relative;
-    background: white;
-    padding: 0px 35px;
-    }
-    .spravy-btn {
-      padding-top: 10px;
-      padding-bottom: 85px;
-      text-align: center;
-    }
-    .spravy-btn a {
-      text-decoration: none;
-    padding: 10px 15px;
-    background: #002f63;
-    color: white;
-    }
-    .news,.services,.why-mafra{
-      display:flex;
-      justify-content:center;
-      gap:20px;
-      padding:20px;
-      flex-wrap:nowrap;}
-      .news div {
-        position: relative;
-      }
-    .news div{
-      padding:20px;
-      max-width:300px;
-      padding: 25px;
-    }
-
-    .news div p{
-      text-align:left;
-      position:absolute;
-      bottom: 0px;
-    color: white;}
-    .services div{
-      border-radius:10px;
-      padding:20px;
-      flex:1 1 300px;
-      max-width:300px;
-      text-align:center;
-      background-color:#fff}
-    .services h2{
-      top:-146px;
-      position:relative;
-      font-size:47px;
-      color:transparent}
-    .services img{
-      width:100%;
-      height:150px;
-      object-fit:cover}
-    .footer{
-      background-color:#007bff;
-      color:#fff;
-      padding-top: 0px;
-      width: 100%;
-      text-align: center;
-    }
-    .footer-content{
-      display:flex;
-      justify-content:flex-end;
-      align-items:center;
-      flex-wrap:wrap;
-      gap:20px}
-    .footer img{
-      width:150px}
-    .footer a{
-      color:#fff;
-      text-decoration:none;
-      margin:0 10px}
-      .map {
-        height: 300px;
-      }
-      .footer-align {
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-      .map iframe {
-        width: 100%;
-        height: 100%;
-      }
-    .why-mafra{
-      position:relative;
-    flex-direction: row;
-    flex-wrap: wrap;}
-    .why-mafra h2{
-      position:relative;
-      top:112px;
-      font-weight:100}
-.time-breakdown {
-  width: 20%;
-}
-    @keyframes fill{
-      0%{
-        transform:rotate(0)}
-      100%{
-        transform:rotate(180deg)}
-    }
-    .news div{
-      background-color:#002f63;
-      color:#fff}
-      .news h3 {
-        margin-top: 0px;
-        margin-bottom: 25px;
-        position: relative;
-        top: 0;
-      }
-    .news h2{
-      color:#fff;
-      text-align:left}
-    .footer-bottom{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      background-color:#036;
-      color:#fff;
-      padding:10px 20px}
-    .footer-bottom div{
-      display:flex;
-      flex-direction:column;
-      align-items:center}
-    .footer-bottom a{
-      color:#fff;
-      text-decoration:none}
-    .header-title{
-      position:relative;
-      display:inline-block}
-    .news-title{
-      position:relative;
-      display:inline-block}
-    .news-title::after{
-      content:'';
-      position:absolute;
-      width:100%;
-      height:5px;
-      background-color:#007bff;
-      bottom:-5px;
-      left:0;
-      z-index:-1}
-      .portfolio {
-        position: relative;
-        cursor: pointer;
-      }
-    .portfolio:after{
-      content:'';
-      position:absolute;
-      transform:rotate(315deg);
-      width:10px;
-      height:10px;
-      right: -18px;
-      border-left:1px solid rgba(51,51,51,.5);
-      border-bottom:1px solid rgba(51,51,51,.5);
-    }
-
-    .submenu{
-      z-index:1;
-      display:none;
-      position:absolute;
-      background:#f9f9f9;
-      padding:10px}
-    .submenu a{
-      display:block;
-        padding: 1rem 1rem;
-    margin: 0;
-border: 1px solid #ec8b9a;
-border-bottom: 2px solid transparent;
-  }
-    .submenu:hover{
-      display:block}
-    .portfolio:hover .submenu{
-      display:block;
-      width: 120%;
-      padding: 0px;
-      padding-top: 18px;
-    }
-    .footer{
-      background-color:#002f63;
-      color:#fff}
-    .footer .top-section{
-      background-color:#d71921;
-      padding:10px 0;
-      text-align:center}
-    .footer .top-section img{
-      margin:0 20px;
-      vertical-align:middle}
-    .footer .columns{
-      display:flex;
-      justify-content:space-around;
-      text-align:left;
-      padding:20px}
-    .footer .columns .column{
-      flex:1;
-      margin:10px}
-    .footer .columns .column p{
-      margin:5px 0}
-    .footer .logos img{
-      margin:10px}
-    .footer .copyright{
-      margin:20px 0;
-      border-top:1px solid #fff;
-      padding-top:10px}
-
- .slider {
-    background: white;
-    margin: auto;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-}
-
-.slider::before {
-    left: 0;
-    top: 0;
-}
-
-.slider .slide-track {
-    animation: scroll 90s linear infinite;
-    display: flex;
-    width: calc(250px * 20);
-
-}
-
-.slider .slide-track:hover {
-    animation-play-state: paused;
-}
-
-.slider .slide {
-    width: 250px;
-}
-
-
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(calc(-250px * 9));
-    }
-}
-
-
-/* [ON BIG SCREEN] */
-/* Wrapper */
-#page-nav {
-}
-
-/* Hide Hamburger */
-#page-nav label, #hamburger, #porttit{
-  display: none;
-}
-
-/* Menu Items */
-#page-nav ul {
-  list-style-type: none;
-}
-#page-nav ul li {
-  display: inline-block;
-  margin: 0 25px;
-}
-@property --percentage {
-  syntax: "<integer>";
-  initial-value: 0;
-  inherits: false;
-}
-
-.counter {
-  animation: counter 3s ease-out;
-  animation-fill-mode: forwards;
-  counter-reset: num var(--percentage);
-}
-.counter::before {
-  content: counter(num) "%";
-  display: block;
-    text-align: center;
-}
-
-@keyframes counter {
-  from {
-    --percentage: 0;
-  }
-  to {
-    --percentage: var(--counter-end);
-  }
-}
-
-.percentage-chart {
-  width: 180px;
-  height: 180px;
-  position: relative;
-}
-.percentage-chart-bg {
-  fill: none;
-  stroke: #ffc9c9;
-  stroke-width: 3;
-}
-
-.percentage-chart-stroke {
-  fill: none;
-  stroke-width: 3;
-  stroke: #e30613;
-  stroke-linecap: round;
-  animation: progress 3s ease-out forwards;
-}
-
-.counter {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  font-size: 24px;
-  color: #e30613;
-  transform: translate3d(-50%, -50%, 0);
-}
-
-@keyframes progress {
-  0% {
-    stroke-dasharray: 0 100;
-  }
-}
 
 /* MOBILE */
-@media screen and (max-width: 768px){
-  /* Show Hamburger */
-  #page-nav label {
-    display: inline-block;
-    color: #e4051f;
-    font-style: normal;
-    font-size: 1.2em;
-    padding: 10px;
-  }
-  #page-nav label:before {
-    content: "☰";
-    color: darkred;
-    font-size: 25px;
-  }
-  .container {
-    padding: 0px;
-  }
-.container-holder {
-      padding: 0px 20px;
-    }
-  /* Break down menu items into vertical */
-  #page-nav ul li {
-    display: block;
-  }
-  #page-nav ul li {
-    border-top: 1px solid #333;
-  }
+@media screen and (max-width: 768px) {
 
-  /* Toggle show/hide menu on checkbox click */
-  #page-nav ul {
-    display: none;
-  }
-  #page-nav input:checked ~ ul {
-    display: block;
-    position: absolute;
-    top: 29px;
-    left: 0;
-    height: 100%;
-    z-index: 10;
-    background: red;
-    width: 100%;
-    padding: 0;
-    text-align: center;
-    padding-top: 10%;
-  }
-  .header {
-        justify-content: space-between;
-  }
-  .header img {
-    margin-left: 10px;
-  }
-  .header-logo {
-    padding-bottom: 10px;
-    border-bottom: none;
-  }
-   .navbar ul li a {
-    color: white;
-    border-bottom: none;
-    font-weight: 600;
-   }
-   #page-nav ul li {
-    border: none;
-    margin: 0;
-  padding: 10px 0px;
-   }
-   .submenu {
-    background: transparent;
-    position: inherit;
-   }
-   .submenu a {
-    border: none;
-   }
-
-
-
-  #page-nav-sub label {
-    display: inline-block;
-    color: #e4051f;
-    font-style: normal;
-    font-size: 1.2em;
-    padding: 10px;
-  }
-  #page-nav-sub label:before {
-    content: "Portfólio titulov";
-            color: white;
-        border-bottom: none;
-        font-weight: 600;
-        font-size: 16px;
-  }
-
-     /* Break down menu items into vertical */
-  #page-nav-sub .submenu a {
-    display: block;
-  }
-
-  /* Toggle show/hide menu on checkbox click */
-  #page-nav-sub .submenu {
-    display: none;
-  }
-  #page-nav-sub input:checked ~ .submenu {
-    display: block;
-    position: relative;
-    left: 0;
-    height: 100%;
-    z-index: 10;
-    background: red;
-    width: 100%;
-    padding: 0;
-    text-align: center;
-            border-top: 1px solid #ffffffa8;
-        border-bottom: 1px solid #ffffffa8;
-  }
-   .portfolio:after {
-    color: white;
-    border-left: 1px solid white;
-    border-bottom: 1px solid white;
-    right: -12px;
-    top: -1px;
-   }
-   .header {
-    margin-top: 0px;
-   }
-
-   #page-nav input:checked ~ label:before{
-    content: "✕";
-   }
-       #page-nav-sub input:checked ~ label:before{
-    content: "Portfólio titulov";
-   }
-   .content-vydavatelstvo{
-    font-size: 25px;
-   }
-   .ponuka-box {
-    flex-direction: column;
-        align-items: center;
-   }
-   .footer-align .columns {
-    flex-direction: column;
-        align-items: center;
-   }
-   .ponuka-box div img{
-    height: 190px;
-            margin-bottom: 15px;
-   }
-   .news {
-        flex-direction: column;
-   }
-   .time-breakdown {
-    width: 40%;
-    display: flex;
-    justify-content: center;
-   }
-   .percentage-chart {
-    width: 110px;
-    height: 135px;
-   }
-   .counter {
-        top: 35%;
-    font-size: 15px;
-   }
-   .why-mafra{
-        justify-content: space-around;
-        gap: none;
-        padding: 0;
-   }
-   .portfolio span {
-    display: none;
-   }
 }
-  </style>
-    <div class="header">
+    </style>
+<body>
+     <div class="header">
       <div class="header-logo">
-      <img alt="MAFRA Slovakia Logo" src="mafra_logo.png" />
+      <img alt="MAFRA Slovakia Logo" src="images/mafra_logo.png" />
       </div>
       <div class="navbar" id="page-nav">
         <input type="checkbox" id="hamburger"/>
@@ -684,7 +210,7 @@ border-bottom: 2px solid transparent;
         <label for="hamburger" &#9776;></label>
       </div>
     </div>
-        <div class="budova" style="background-image:url(video.jpg);width:100%;height:550px">
+        <div class="budova" style="background-image:url(images/portfolio-titulov.png);width:100%;height:350px">
         <video autoplay loop muted>
           <source src="example_video.mp4" type="video/mp4" />
         </video>
@@ -695,227 +221,95 @@ border-bottom: 2px solid transparent;
           </p>
         </div>
       </div>
-  <div class="container">
-    <div class="container-holder">
-      <div class="content">
-        <h1 style="display:none">MAFRA Slovakia
-        </h1>
-        <p class="content-vydavatelstvo" >Vydavateľstvo 
-          <span class="content-mafra" style="color:red;font-weight:700">MAFRA</span>
-          <span class="content-slovakia" style="color:#787a7b;">Slovakia
-          </span class="content-vydavatelstvo"> pôsobí na slovenskom trhu od roku 1992. Vydáva Hospodárske noviny a odborné tituly, prevádzkuje ekonomické a finančné portály a organizuje podujatia pre odbornú verejnosť.
-        </p>
-        <p style="font-size:22px;text-align:left;color:#000;margin:0">
-          Sme dôveryhodným zdrojom informácií pre čitateľov so záujmom o ekonomiku, marketing, zdravotníctvo až po šport.
-          <br />Na Mafra Slovakia, a.s. sa vzťahuje pôsobnosť Slovenskej republiky a slovenského regulátora.
-        </p>
-        <div class="ponuka"><span><h2>Ponuka</h2></span>
-        </div>
-      </div>
-      <div class="ponuka-box">
-        <div>
-          <a href="#"><img alt="Online" src="mafra_online.png" /></a>
-          </h2>
-        </div>
-        <div>
-          <a href="#"><img alt="Inzercia" src="mafra_inzercia.png" /></a>
-          </h2>
-        </div>
-        <div>
-          <a href="#"><img alt="Print" src="mafra_print.png" /></a>
-          </h2>
-        </div>
-      </div>
-      <div class="preco-mafra">
-        <span><h2 class="">Prečo Mafra
-        </h2></span>
-      </div>
-      <div class="why-mafra">
-          <div class="time-breakdown">
-            <div class="time-breakdown-chart">
-              <!-- Focus chart -->
-              <div class="percentage-chart percentage-chart-focus">
-                <svg viewBox="0 0 36 36">
-                  <path class="percentage-chart-bg" d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831" />
-                  <path class="percentage-chart-stroke" stroke-dasharray="60, 100" d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831" />
-                </svg>
-                <div class="counter" style="--counter-end:60"><div class="counter-text">aôsldkfj</div></div>
-              </div>
-            </div>
-         </div>
 
-                   <div class="time-breakdown">
-            <div class="time-breakdown-chart">
-              <!-- Focus chart -->
-              <div class="percentage-chart percentage-chart-focus">
-                <svg viewBox="0 0 36 36">
-                  <path class="percentage-chart-bg" d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831" />
-                  <path class="percentage-chart-stroke" stroke-dasharray="48, 100" d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831" />
-                </svg>
-                <div class="counter" style="--counter-end:48"><div class="counter-text">sdfhsfghfd</div></div>
-              </div>
-            </div>
-         </div>
+<div class="container">
 
-                   <div class="time-breakdown">
-            <div class="time-breakdown-chart">
-              <!-- Focus chart -->
-              <div class="percentage-chart percentage-chart-focus">
-                <svg viewBox="0 0 36 36">
-                  <path class="percentage-chart-bg" d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831" />
-                  <path class="percentage-chart-stroke" stroke-dasharray="57, 100" d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831" />
-                </svg>
-                <div class="counter" style="--counter-end:57"><div class="counter-text">utzuiztiuz</div></div>
-              </div>
-            </div>
-         </div>
 
-                   <div class="time-breakdown">
-            <div class="time-breakdown-chart">
-              <!-- Focus chart -->
-              <div class="percentage-chart percentage-chart-focus">
-                <svg viewBox="0 0 36 36">
-                  <path class="percentage-chart-bg" d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831" />
-                  <path class="percentage-chart-stroke" stroke-dasharray="25, 100" d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831" />
-                </svg>
-                <div class="counter" style="--counter-end:25"><div class="counter-text">mvbnvmb</div></div>
-              </div>
-            </div>
-         </div>
-
-                   <div class="time-breakdown">
-            <div class="time-breakdown-chart">
-              <!-- Focus chart -->
-              <div class="percentage-chart percentage-chart-focus">
-                <svg viewBox="0 0 36 36">
-                  <path class="percentage-chart-bg" d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831" />
-                  <path class="percentage-chart-stroke" stroke-dasharray="89, 100" d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831" />
-                </svg>
-                <div class="counter" style="--counter-end:89"><div class="counter-text">qerwegdf</div></div>
-              </div>
-            </div>
-         </div>
-
-                   <div class="time-breakdown">
-            <div class="time-breakdown-chart">
-              <!-- Focus chart -->
-              <div class="percentage-chart percentage-chart-focus">
-                <svg viewBox="0 0 36 36">
-                  <path class="percentage-chart-bg" d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831" />
-                  <path class="percentage-chart-stroke" stroke-dasharray="66, 100" d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831" />
-                </svg>
-                <div class="counter" style="--counter-end:66"><div class="counter-text">xcvbxc</div></div>
-              </div>
-            </div>
-         </div>
-
-                   <div class="time-breakdown">
-            <div class="time-breakdown-chart">
-              <!-- Focus chart -->
-              <div class="percentage-chart percentage-chart-focus">
-                <svg viewBox="0 0 36 36">
-                  <path class="percentage-chart-bg" d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831" />
-                  <path class="percentage-chart-stroke" stroke-dasharray="15, 100" d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831" />
-                </svg>
-                <div class="counter" style="--counter-end:15"><div class="counter-text">juikuiluzl</div></div>
-              </div>
-            </div>
-         </div>
-
-                   <div class="time-breakdown">
-            <div class="time-breakdown-chart">
-              <!-- Focus chart -->
-              <div class="percentage-chart percentage-chart-focus">
-                <svg viewBox="0 0 36 36">
-                  <path class="percentage-chart-bg" d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831" />
-                  <path class="percentage-chart-stroke" stroke-dasharray="32, 100" d="M18 2.0845
-                    a 15.9155 15.9155 0 0 1 0 31.831
-                    a 15.9155 15.9155 0 0 1 0 -31.831" />
-                </svg>
-                <div class="counter" style="--counter-end:32"><div class="counter-text">qwer</div></div>
-              </div>
-            </div>
-         </div>
-      </div>
-      <div class="spravy-noviny">
-        <span><h2>Správy a novinky
-        </h2></span>
-      </div>
-      <div class="news">
-        <div>
-          <h3>Eurotelevizia je opäť najpredávanejším časopisom Vianoc
-          </h3>
-          <p> Čítať ďalej ->
-          </p>
+        <div class="section category-buttons" >
+            <img class="btn" src="images/print_btn.png" alt="PRINT">
+            <img class="btn" src="images/online_btn.png" alt="ONLINE">
         </div>
-        <div>
-          <h3>Eurotelevizia bola v decembri najpredávanejším týždenníkom
-          </h3>
-          <p> Čítať ďalej ->
-          </p>
+    <div class="sub-categories-wrapper ">
+        <div class="sub-categories buttons" >
+            <button onclick="showAllProducts()">Všetky</button>
+            <button onclick="filterByCategory('kategoria1')">Denník</button>
+            <button onclick="filterByCategory('kategoria2')">Odborné</button>
+            <button onclick="filterByCategory('kategoria3')">Ženské</button>
+            <button onclick="filterByCategory('kategoria4')">Spoločenské</button>
+            <button onclick="filterByCategory('kategoria5')">Záujmové</button>
+            <button onclick="filterByCategory('kategoria6')">Programové</button>
+            <button onclick="filterByCategory('kategoria7')">Krížovky</button>
         </div>
-        <div>
-          <h3>Vianočná Eurotelevizia sa opäť stala najpredávanejšou!
-          </h3>
-          <p> Čítať ďalej ->
-          </p>
-        </div>
-      </div>
-      <div class="spravy-btn"><a href="#">Staršie správy</a></div>
     </div>
-  </div>
-      <div class="footer">
+    <div class="layout">
+        <div class="sidebar" >
+            <ul id="product-list" class="product-list">
+                <li class="product" data-id="1" data-category="kategoria1" onclick="showProductDetail(1)">Hospodárske noviny</li>
+                <li class="product" data-id="2" data-category="kategoria1" onclick="showProductDetail(2)">HN Magazín</li>
+                <li class="product" data-id="3" data-category="kategoria2" onclick="showProductDetail(3)">Prečo nie?!</li>
+                <li class="product" data-id="4" data-category="kategoria2" onclick="showProductDetail(4)">Svet 2025</li>
+                <li class="product" data-id="1" data-category="kategoria1" onclick="showProductDetail(1)">Hospodárske noviny</li>
+                <li class="product" data-id="2" data-category="kategoria1" onclick="showProductDetail(2)">HN Magazín</li>
+                <li class="product" data-id="3" data-category="kategoria2" onclick="showProductDetail(3)">Prečo nie?!</li>
+                <li class="product" data-id="4" data-category="kategoria2" onclick="showProductDetail(4)">Svet 2025</li>
+                <li class="product" data-id="1" data-category="kategoria1" onclick="showProductDetail(1)">Hospodárske noviny</li>
+                <li class="product" data-id="2" data-category="kategoria1" onclick="showProductDetail(2)">HN Magazín</li>
+                <li class="product" data-id="3" data-category="kategoria2" onclick="showProductDetail(3)">Prečo nie?!</li>
+                <li class="product" data-id="4" data-category="kategoria2" onclick="showProductDetail(4)">Svet 2025</li>
+                <li class="product" data-id="1" data-category="kategoria1" onclick="showProductDetail(1)">Hospodárske noviny</li>
+                <li class="product" data-id="2" data-category="kategoria1" onclick="showProductDetail(2)">HN Magazín</li>
+                <li class="product" data-id="3" data-category="kategoria2" onclick="showProductDetail(3)">Prečo nie?!</li>
+                <li class="product" data-id="4" data-category="kategoria2" onclick="showProductDetail(4)">Svet 2025</li>
+                <li class="product" data-id="1" data-category="kategoria1" onclick="showProductDetail(1)">Hospodárske noviny</li>
+                <li class="product" data-id="2" data-category="kategoria1" onclick="showProductDetail(2)">HN Magazín</li>
+                <li class="product" data-id="3" data-category="kategoria2" onclick="showProductDetail(3)">Prečo nie?!</li>
+                <li class="product" data-id="4" data-category="kategoria2" onclick="showProductDetail(4)">Svet 2025</li>
+                <li class="product" data-id="1" data-category="kategoria1" onclick="showProductDetail(1)">Hospodárske noviny</li>
+                <li class="product" data-id="2" data-category="kategoria1" onclick="showProductDetail(2)">HN Magazín</li>
+                <li class="product" data-id="3" data-category="kategoria2" onclick="showProductDetail(3)">Prečo nie?!</li>
+                <li class="product" data-id="4" data-category="kategoria2" onclick="showProductDetail(4)">Svet 2025</li>
+                <li class="product" data-id="1" data-category="kategoria1" onclick="showProductDetail(1)">Hospodárske noviny</li>
+                <li class="product" data-id="2" data-category="kategoria1" onclick="showProductDetail(2)">HN Magazín</li>
+                <li class="product" data-id="3" data-category="kategoria2" onclick="showProductDetail(3)">Prečo nie?!</li>
+                <li class="product" data-id="4" data-category="kategoria2" onclick="showProductDetail(4)">Svet 2025</li>
+                <li class="product" data-id="1" data-category="kategoria1" onclick="showProductDetail(1)">Hospodárske noviny</li>
+                <li class="product" data-id="2" data-category="kategoria1" onclick="showProductDetail(2)">HN Magazín</li>
+                <li class="product" data-id="3" data-category="kategoria2" onclick="showProductDetail(3)">Prečo nie?!</li>
+                <li class="product" data-id="4" data-category="kategoria2" onclick="showProductDetail(4)">Svet 2025</li>
+                <li class="product" data-id="1" data-category="kategoria1" onclick="showProductDetail(1)">Hospodárske noviny</li>
+                <li class="product" data-id="2" data-category="kategoria1" onclick="showProductDetail(2)">HN Magazín</li>
+                <li class="product" data-id="3" data-category="kategoria2" onclick="showProductDetail(3)">Prečo nie?!</li>
+                <li class="product" data-id="4" data-category="kategoria2" onclick="showProductDetail(4)">Svet 2025</li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div id="product-detail-container" class="hidden"></div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="footer">
             <div class="map">
         <iframe style="border:0" allowfullscreen aria-hidden="false" frameborder="0" src="https://maps.google.com/maps?q=Kalinčiakova%2033,%20831%2004%20Bratislava&t=&z=13&ie=UTF8&iwloc=&output=embed" tabindex="0">
         </iframe>
       </div>
       <div class="top-section slider">
         <div class="slide-track">
-        <div class="slide"><img alt="Svet Evity" src="a.png" /></div>
-        <div class="slide"><img alt="HN Online" src="hnonline_logo.png" /></div>
-        <div class="slide"><img alt="Brainee" src="brainee_logo.png" /></div>
-        <div class="slide"><img alt="Svet Evity" src="a.png" /></div>
-        <div class="slide"><img alt="HN Online" src="hnonline_logo.png" /></div>
-        <div class="slide"><img alt="Svet Evity" src="a.png" /></div>
-        <div class="slide"><img alt="HN Online" src="hnonline_logo.png" /></div>
-        <div class="slide"><img alt="Brainee" src="brainee_logo.png" /></div>
-        <div class="slide"><img alt="Svet Evity" src="a.png" /></div>
-        <div class="slide"><img alt="HN Online" src="hnonline_logo.png" /></div>
-        <div class="slide"><img alt="Svet Evity" src="a.png" /></div>
-        <div class="slide"><img alt="HN Online" src="hnonline_logo.png" /></div>
-        <div class="slide"><img alt="Brainee" src="brainee_logo.png" /></div>
-        <div class="slide"><img alt="Svet Evity" src="a.png" /></div>
-        <div class="slide"><img alt="HN Online" src="hnonline_logo.png" /></div>
+        <div class="slide"><img alt="Svet Evity" src="images/a.png" /></div>
+        <div class="slide"><img alt="HN Online" src="images/hnonline_logo.png" /></div>
+        <div class="slide"><img alt="Brainee" src="images/brainee_logo.png" /></div>
+        <div class="slide"><img alt="Svet Evity" src="images/a.png" /></div>
+        <div class="slide"><img alt="HN Online" src="images/hnonline_logo.png" /></div>
+        <div class="slide"><img alt="Svet Evity" src="images/a.png" /></div>
+        <div class="slide"><img alt="HN Online" src="images/hnonline_logo.png" /></div>
+        <div class="slide"><img alt="Brainee" src="images/brainee_logo.png" /></div>
+        <div class="slide"><img alt="Svet Evity" src="images/a.png" /></div>
+        <div class="slide"><img alt="HN Online" src="images/hnonline_logo.png" /></div>
+        <div class="slide"><img alt="Svet Evity" src="images/a.png" /></div>
+        <div class="slide"><img alt="HN Online" src="images/hnonline_logo.png" /></div>
+        <div class="slide"><img alt="Brainee" src="images/brainee_logo.png" /></div>
+        <div class="slide"><img alt="Svet Evity" src="images/a.png" /></div>
+        <div class="slide"><img alt="HN Online" src="images/hnonline_logo.png" /></div>
       </div>
       </div>
 
@@ -946,10 +340,10 @@ border-bottom: 2px solid transparent;
           </p>
         </div>
         <div class="column logos">
-          <img alt="EKLogo" src="ek_logo.png" />
+          <img alt="EKLogo" src="images/ek_logo.png" />
         </div>
         <div class="column logos">
-          <img alt="Mafra Logo" src="mafra_logo.png" />
+          <img alt="Mafra Logo" src="images/mafra_logo.png" />
         </div>
       </div>
       <div class="copyright">
@@ -961,4 +355,179 @@ border-bottom: 2px solid transparent;
       </div>
       </div>
     </div>
+     <script>
+    const products = {
+      1: {
+        name: "Hospodárske noviny",
+        description: "Jediný ekonomický denník na Slovensku, ktorý svojím zameraním prináša seriózne a dôveryhodné informácie pre každého, koho zaujíma ekonomický pohľad na dianie doma a vo svete. Každý pracovný deň prinášajú aktuálne spravodajstvo, analýzy, štatistiky, prognózy a užitočné rady aj pre Váš druh podnikania.",
+        zameranie: "Zameranie: Ekonomika, poradenstvo",
+        vznik: "Vznik: 1993",
+        periodicita: "Periodicita: denník",
+        kontakt: "Kontakt: inzercia@mafraslovakia.sk",
+        image: "https://static.svetevity.sk/pdfs/caputova.jpg",
+        btnCennik: "Cenník",
+        btnCennikUrl: "", 
+        btnHarm:"Harmonogram",
+        btnHarmUrl: "", 
+        btnPred:"Predplatné",
+        btnPredUrl: "", 
+      },
+      2: {
+        name: "Produkt 2",
+        description: "Popis pre Produkt 2. Tento produkt je z kategórie 1.",
+        additionalDescription: "Toto je druhý popis produktu 2.",
+        image: "https://via.placeholder.com/300?text=Produkt+2",
+      },
+      3: {
+        name: "Produkt 3",
+        description: "Popis pre Produkt 3. Tento produkt je z kategórie 2.",
+        additionalDescription: "Toto je druhý popis produktu 3.",
+        image: "https://via.placeholder.com/300?text=Produkt+3",
+      },
+      4: {
+        name: "Produkt 4",
+        description: "Popis pre Produkt 4. Tento produkt je z kategórie 2.",
+        additionalDescription: "Toto je druhý popis produktu 4.",
+        image: "https://via.placeholder.com/300?text=Produkt+4",
+      },
+    };
+
+    let currentCategory = null;
+    let currentProductId = null;
+
+    function updateURL(path) {
+      history.pushState(null, '', path);
+    }
+
+    function showAllProducts() {
+      const productElements = document.querySelectorAll('.product');
+      productElements.forEach(product => product.classList.remove('hidden'));
+
+      currentCategory = null;
+      updateURL('/');
+      refreshProductDetail();
+    }
+
+    function filterByCategory(category) {
+      const productElements = document.querySelectorAll('.product');
+      productElements.forEach(product => {
+        if (product.dataset.category === category) {
+          product.classList.remove('hidden');
+        } else {
+          product.classList.add('hidden');
+        }
+      });
+
+      currentCategory = category;
+      updateURL('/kategoria/' + category);
+      refreshProductDetail();
+    }
+
+    function showProductDetail(productId) {
+      const product = products[productId];
+      if (!product) return;
+
+      currentProductId = productId;
+
+      const detailContainer = document.getElementById('product-detail-container');
+      detailContainer.classList.remove('hidden');
+      detailContainer.innerHTML = `
+        <div class="product-detail">
+          <div class="product-detail-headline"><h2>${product.name}</h2></div>
+          <div class="product-detail-text">
+          <p>${product.description}</p>
+          <p>${product.zameranie}</p>
+          <p>${product.vznik}</p>
+          <p>${product.periodicita}</p>
+          <p>${product.kontakt}</p>
+          <div class="buttons">
+          <a class="product-detail-btn" href="${product.btnCennikUrl}" >${product.btnCennik}</a>
+          <a class="product-detail-btn" href="${product.btnHarmUrl}" >${product.btnHarm}</a>
+          <a class="product-detail-btn" href="${product.btnPredUrl}" >${product.btnPred}</a>
+          </div>
+          </div>
+          <div>
+          <img class="product-detail-img" src="${product.image}" alt="${product.name}">
+          </div>
+        </div>
+      `;
+
+      updateURL(`/produkt/${productId}`);
+    }
+
+    function refreshProductDetail() {
+      const detailContainer = document.getElementById('product-detail-container');
+
+      if (!currentProductId) {
+        detailContainer.classList.add('hidden');
+        return;
+      }
+
+      const product = products[currentProductId];
+      if (!product) {
+        detailContainer.classList.add('hidden');
+        return;
+      }
+
+      detailContainer.innerHTML = `
+        <div class="product-detail">
+          <div class="product-detail-headline"><h2>${product.name}</h2></div>
+          <div class="product-detail-text">
+          <p>${product.description}</p>
+          <p>${product.zameranie}</p>
+          <p>${product.vznik}</p>
+          <p>${product.periodicita}</p>
+          <p>${product.kontakt}</p>
+          <div class="buttons">
+          <a class="product-detail-btn" href="${product.btnCennikUrl}" >${product.btnCennik}</a>
+          <a class="product-detail-btn" href="${product.btnHarmUrl}" >${product.btnHarm}</a>
+          <a class="product-detail-btn" href="${product.btnPredUrl}" >${product.btnPred}</a>
+          </div>
+          </div>
+          <div>
+          <img class="product-detail-img" src="${product.image}" alt="${product.name}">
+          </div>
+        </div>
+      `;
+      detailContainer.classList.remove('hidden');
+    }
+
+
+    // Obsluha spätného tlačidla v prehliadači
+    window.addEventListener('popstate', () => {
+      const path = location.pathname;
+
+      if (path.startsWith('/')) {
+        showAllProducts();
+      } else if (path.startsWith('/kategoria/')) {
+        const category = path.split('/')[2];
+        filterByCategory(category);
+      } else if (path.startsWith('/produkt/')) {
+        const productId = path.split('/')[2];
+        showProductDetail(productId);
+      } else {
+        showAllProducts();
+      }
+    });
+
+    // Nastavenie po načítaní stránky
+    window.addEventListener('load', () => {
+      const path = location.pathname;
+
+      if (path.startsWith('/')) {
+        showAllProducts();
+      } else if (path.startsWith('/kategoria/')) {
+        const category = path.split('/')[2];
+        filterByCategory(category);
+      } else if (path.startsWith('/produkt/')) {
+        const productId = path.split('/')[2];
+        showProductDetail(productId);
+      } else {
+        showAllProducts();
+      }
+    });
+    showProductDetail(1)
+  </script>
+</body>
 </html>
+
